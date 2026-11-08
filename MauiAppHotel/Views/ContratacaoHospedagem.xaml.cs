@@ -17,19 +17,21 @@ public partial class ContratacaoHospedagem : ContentPage
         dtpck_checkin.MinimumDate = DateTime.Today;
         dtpck_checkin.MaximumDate = DateTime.Today.AddMonths(1);
 
-        dtpck_checkout.MinimumDate = dtpck_checkin.Date.AddDays(1);
-        dtpck_checkout.MaximumDate = dtpck_checkin.Date.AddMonths(6);
-        dtpck_checkout.Date = dtpck_checkin.Date.AddDays(1);
+        dtpck_checkin.Date = DateTime.Today;
+
+        dtpck_checkout.MinimumDate = DateTime.Today.AddDays(1);
+        dtpck_checkout.MaximumDate = DateTime.Today.AddMonths(6);
+        dtpck_checkout.Date = DateTime.Today.AddDays(1);
     }
 
     private void dtpck_checkin_DateSelected(object sender, DateChangedEventArgs e)
     {
-        DateTime dataSelecionada = e.NewDate;
+        DateTime dataSelecionada = Convert.ToDateTime(e.NewDate);
 
         dtpck_checkout.MinimumDate = dataSelecionada.AddDays(1);
         dtpck_checkout.MaximumDate = dataSelecionada.AddMonths(6);
 
-        if (dtpck_checkout.Date <= dataSelecionada)
+        if (Convert.ToDateTime(dtpck_checkout.Date) <= dataSelecionada)
             dtpck_checkout.Date = dataSelecionada.AddDays(1);
     }
 
@@ -48,8 +50,8 @@ public partial class ContratacaoHospedagem : ContentPage
                 QuartoSelecionado = quarto,
                 QntAdultos = Convert.ToInt32(stp_adultos.Value),
                 QntCriancas = Convert.ToInt32(stp_criancas.Value),
-                DataCheckIn = dtpck_checkin.Date,
-                DataCheckOut = dtpck_checkout.Date,
+                DataCheckIn = Convert.ToDateTime(dtpck_checkin.Date),
+                DataCheckOut = Convert.ToDateTime(dtpck_checkout.Date),
             };
 
             await Navigation.PushAsync(new HospedagemContratada()

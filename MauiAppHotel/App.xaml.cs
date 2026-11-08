@@ -22,16 +22,15 @@ namespace MauiAppHotel
             CultureInfo.DefaultThreadCurrentCulture = cultura;
             CultureInfo.DefaultThreadCurrentUICulture = cultura;
 
-            MainPage = new NavigationPage(new Views.ContratacaoHospedagem())
-            {
-                BarBackgroundColor = Color.FromArgb("#0E5E6F"),
-                BarTextColor = Colors.White
-            };
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            var window = base.CreateWindow(activationState);
+            var window = new Window(new NavigationPage(new Views.ContratacaoHospedagem())
+            {
+                BarBackgroundColor = Color.FromArgb("#0E5E6F"),
+                BarTextColor = Colors.White
+            });
 
             window.Width = 420;
             window.Height = 760;
