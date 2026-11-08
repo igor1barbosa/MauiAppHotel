@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppHotel.Views.HospedagemContratada"
+             Title="Resumo da Hospedagem"
+             BackgroundColor="{StaticResource Secondary}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12" VerticalOptions="Center">
+
+            <Label Text="Sua Reserva"
+                   FontFamily="Kalam"
+                   FontSize="40"
+                   TextColor="{StaticResource Primary}" />
+
+            <Border BackgroundColor="White"
+                    Stroke="{StaticResource PrimaryDark}"
+                    StrokeShape="RoundRectangle 14"
+                    Padding="16">
+
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                      RowSpacing="10">
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="Suíte:" HorizontalTextAlignment="Start" />
+                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding QuartoSelecionado.Descricao}"
+                           FontAttributes="Bold" HorizontalTextAlignment="End" />
+
+                    <Label Grid.Row="1" Grid.Column="0" Text="Adultos:" HorizontalTextAlignment="Start" />
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding QntAdultos}"
+                           FontAttributes="Bold" HorizontalTextAlignment="End" />
+
+                    <Label Grid.Row="2" Grid.Column="0" Text="Crianças:" HorizontalTextAlignment="Start" />
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding QntCriancas}"
+                           FontAttributes="Bold" HorizontalTextAlignment="End" />
+
+                    <Label Grid.Row="3" Grid.Column="0" Text="Check-in:" HorizontalTextAlignment="Start" />
+                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding DataCheckIn, StringFormat='{0:dd/MM/yyyy}'}"
+                           FontAttributes="Bold" HorizontalTextAlignment="End" />
+
+                    <Label Grid.Row="4" Grid.Column="0" Text="Check-out:" HorizontalTextAlignment="Start" />
+                    <Label Grid.Row="4" Grid.Column="1" Text="{Binding DataCheckOut, StringFormat='{0:dd/MM/yyyy}'}"
+                           FontAttributes="Bold" HorizontalTextAlignment="End" />
+
+                    <Label Grid.Row="5" Grid.Column="0" Text="Estadia:" HorizontalTextAlignment="Start" />
+                    <Label Grid.Row="5" Grid.Column="1" Text="{Binding Estadia, StringFormat='{0} diária(s)'}"
+                           FontAttributes="Bold" HorizontalTextAlignment="End" />
+                </Grid>
+            </Border>
+
+            <Border BackgroundColor="{StaticResource Primary}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 14"
+                    Padding="16">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="VALOR TOTAL" TextColor="White" FontSize="14" />
+                    <Label Text="{Binding ValorTotal, StringFormat='{0:C}'}"
+                           TextColor="White" FontSize="32" FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Voltar" CornerRadius="12" Clicked="Voltar_Clicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

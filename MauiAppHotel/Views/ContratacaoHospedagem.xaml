@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppHotel.Views.ContratacaoHospedagem"
+             Title="Hotel Mar Azul"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{StaticResource Secondary}">
+
+    <ContentPage.Resources>
+        <Style x:Key="Cartao" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="Stroke" Value="{StaticResource PrimaryDark}" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 14" />
+            <Setter Property="Padding" Value="12" />
+        </Style>
+
+        <Style x:Key="TituloSecao" TargetType="Label">
+            <Setter Property="TextTransform" Value="Uppercase" />
+            <Setter Property="FontSize" Value="Subtitle" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource Primary}" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="Center"
+                             Padding="16"
+                             Spacing="12">
+
+            <Image Source="logo_hotel.png"
+                   HeightRequest="110"
+                   WidthRequest="110"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Cálculo da Diária"
+                   FontFamily="Kalam"
+                   FontSize="44"
+                   TextColor="{StaticResource Primary}" />
+
+            <Label Text="Hotel Mar Azul • Reserve sua estadia"
+                   FontSize="14"
+                   TextColor="{StaticResource Gray600}" />
+
+            <Border Style="{StaticResource Cartao}">
+                <VerticalStackLayout Spacing="12">
+
+                    <!-- Hóspedes -->
+                    <Label Text="Hóspedes" Style="{StaticResource TituloSecao}" />
+
+                    <Grid RowDefinitions="Auto, Auto"
+                          ColumnDefinitions="*, *, 2*"
+                          RowSpacing="8">
+
+                        <Label Grid.Row="0" Grid.Column="0"
+                               Text="Adultos:" />
+
+                        <Label Grid.Row="0" Grid.Column="1"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource Primary}"
+                               Text="{Binding Value}"
+                               BindingContext="{x:Reference stp_adultos}" />
+
+                        <Stepper Grid.Row="0" Grid.Column="2"
+                                 x:Name="stp_adultos"
+                                 Minimum="1"
+                                 Maximum="10"
+                                 Increment="1"
+                                 Value="1" />
+
+                        <Label Grid.Row="1" Grid.Column="0"
+                               Text="Crianças:" />
+
+                        <Label Grid.Row="1" Grid.Column="1"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource Primary}"
+                               Text="{Binding Value}"
+                               BindingContext="{x:Reference stp_criancas}" />
+
+                        <Stepper Grid.Row="1" Grid.Column="2"
+                                 x:Name="stp_criancas"
+                                 Minimum="0"
+                                 Maximum="10"
+                                 Increment="1" />
+                    </Grid>
+
+                    <!-- Suíte -->
+                    <Border Style="{StaticResource Cartao}"
+                            BackgroundColor="{StaticResource Secondary}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Escolha sua Suíte"
+                                   Style="{StaticResource TituloSecao}" />
+
+                            <Picker x:Name="pck_quarto"
+                                    Title="Selecione sua Acomodação"
+                                    ItemDisplayBinding="{Binding Descricao}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Período -->
+                    <Border Style="{StaticResource Cartao}"
+                            BackgroundColor="{StaticResource Secondary}">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Período da Estadia"
+                                   Style="{StaticResource TituloSecao}" />
+
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
+                                <Label Text="Check-in:" />
+                                <DatePicker x:Name="dtpck_checkin"
+                                            Format="dd/MM/yyyy"
+                                            DateSelected="dtpck_checkin_DateSelected" />
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
+                                <Label Text="Check-out:" />
+                                <DatePicker x:Name="dtpck_checkout"
+                                            Format="dd/MM/yyyy" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Button Text="Avançar"
+                            CornerRadius="12"
+                            FontAttributes="Bold"
+                            Clicked="Avancar_Clicked" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Sobre o App"
+                    BackgroundColor="Transparent"
+                    BorderColor="{StaticResource Primary}"
+                    BorderWidth="1"
+                    TextColor="{StaticResource Primary}"
+                    CornerRadius="12"
+                    Clicked="Sobre_Clicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
