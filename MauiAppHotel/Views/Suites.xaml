@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppHotel.Views.Suites"
+             Title="Nossas Suítes"
+             BackgroundColor="{StaticResource Secondary}">
+
+    <Grid RowDefinitions="Auto, *" Padding="16" RowSpacing="10">
+
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="Nossas Suítes"
+                   FontFamily="Kalam"
+                   FontSize="40"
+                   TextColor="{StaticResource Primary}" />
+            <Label Text="Toque em uma suíte para escolher"
+                   FontSize="14"
+                   TextColor="{StaticResource Gray600}" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1"
+                        x:Name="lst_suites"
+                        SelectionMode="Single"
+                        SelectionChanged="lst_suites_SelectionChanged">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="12" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="White"
+                            Stroke="{StaticResource PrimaryDark}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 14"
+                            Padding="0">
+
+                        <Grid ColumnDefinitions="10, *">
+
+                            <BoxView Grid.Column="0" Color="{Binding CorDestaque}" />
+
+                            <VerticalStackLayout Grid.Column="1" Padding="14" Spacing="6">
+
+                                <Label Text="{Binding Descricao}"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="{Binding CorDestaque}"
+                                       HorizontalTextAlignment="Start" />
+
+                                <Label Text="{Binding Detalhes}"
+                                       FontSize="14"
+                                       TextColor="{StaticResource Gray600}"
+                                       HorizontalTextAlignment="Start" />
+
+                                <Label Text="{Binding Capacidade, StringFormat='Até {0} hóspedes'}"
+                                       FontSize="13"
+                                       HorizontalTextAlignment="Start" />
+
+                                <Grid ColumnDefinitions="*, *">
+                                    <Label Grid.Column="0"
+                                           Text="{Binding ValorDiariaAdulto, StringFormat='Adulto: {0:C}'}"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Start" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding ValorDiariaCrianca, StringFormat='Criança: {0:C}'}"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="End" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

@@ -13,6 +13,10 @@
                    FontSize="40"
                    TextColor="{StaticResource Primary}" />
 
+            <Label Text="{Binding TotalHospedes, StringFormat='{0} hóspede(s) • confira os dados abaixo'}"
+                   FontSize="14"
+                   TextColor="{StaticResource Gray600}" />
+
             <Border BackgroundColor="White"
                     Stroke="{StaticResource PrimaryDark}"
                     StrokeShape="RoundRectangle 14"
@@ -48,10 +52,16 @@
                 </Grid>
             </Border>
 
-            <Border BackgroundColor="{StaticResource Primary}"
-                    StrokeThickness="0"
+            <Border StrokeThickness="0"
                     StrokeShape="RoundRectangle 14"
                     Padding="16">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="{StaticResource Primary}" Offset="0.0" />
+                        <GradientStop Color="#1B8A9E" Offset="0.6" />
+                        <GradientStop Color="{StaticResource Tertiary}" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
                 <VerticalStackLayout Spacing="4">
                     <Label Text="VALOR TOTAL" TextColor="White" FontSize="14" />
                     <Label Text="{Binding ValorTotal, StringFormat='{0:C}'}"
